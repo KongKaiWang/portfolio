@@ -3,9 +3,9 @@ from datetime import datetime
 
 if __name__ == '__main__':
     pd.set_option('display.width', 200, 'display.max_columns', 20)
-    DIRECTORY = rf'C:\Users\KW38770\Documents\WangK\Formation'
-    file = rf'{DIRECTORY}\NG_Cell_Reference_v3.csv'
-    df = pd.read_csv(file, parse_dates=['MEASURE_DATE'])
+    df = pd.read_csv('cell_ref.csv', parse_dates=['MEASURE_DATE'])
+    print(df)
+    exit()
     ng_cell_ids = df['CELL_ID'].unique()
     ok_cell_ids = []
     ok_tray_pos = []
@@ -55,4 +55,3 @@ if __name__ == '__main__':
             ok_cell_ids.append(df[ok_cell_reference]['OK_CELL_ID'].values[0])  # append corresponding cell ID if it exists
     res['OK_CELL_ID'] = ok_cell_ids
     res['OK_TRAY_POSITION'] = ok_tray_pos
-    res.to_csv(rf'{DIRECTORY}\NG_Extraction_Cells_v3.csv')
